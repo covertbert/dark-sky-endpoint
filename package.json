@@ -1,0 +1,27 @@
+{
+  "name": "dark-sky-api-endpoint",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "dark-sky": "^1.1.2",
+    "eslint": "^4.7.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-react": "^5.1.1",
+    "eslint-plugin-standard": "^3.0.1",
+    "express": "^4.16.2",
+    "express-rate-limit": "^2.11.0",
+    "request": "^2.83.0"
+  }
+}
