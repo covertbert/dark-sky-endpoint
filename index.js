@@ -1,6 +1,9 @@
 const express = require('express')
 const RateLimit = require('express-rate-limit')
+const CircularJSON = require('circular-json')
 const cors = require('cors')
+const axios = require('axios')
+
 const DarkSky = require('dark-sky')
 
 const keys = require('./keys')
@@ -17,6 +20,10 @@ app.use(limiter)
 app.use(cors())
 
 const forecast = new DarkSky(keys.darksky)
+
+app.get('/', (req, res) => {
+  res.send('There be nothing here')
+})
 
 app.get('/weather/json', (req, res) => {
   const lat = req.param('lat')
@@ -36,6 +43,19 @@ app.get('/weather/json', (req, res) => {
     .catch(error => {
       res.send(error)
     })
+})
+
+app.get('/location_data/json', (req, res) => {
+  const lat = req.param('lat')
+  const lon = req.param('lon')
+  const url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json'
+  const apiQuery = `${url}?location=${lat},${lon}&radius=1000&key=${keys.images}`
+
+  axios.get(apiQuery).then((response) => {
+    res.send(CircularJSON.stringify(response.data.results))
+  }).catch(error => {
+    res.send(error)
+  })
 })
 
 app.listen(3000, () => {
