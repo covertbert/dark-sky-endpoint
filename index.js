@@ -1,6 +1,5 @@
 const express = require('express')
 const RateLimit = require('express-rate-limit')
-const CircularJSON = require('circular-json')
 const cors = require('cors')
 const axios = require('axios')
 
@@ -59,10 +58,20 @@ app.get('/location_data/json', (req, res) => {
       const placeData = response.data.results
 
       const locationFromPlaceArray = placeData[0]
-      const imageFromLocationArray =
-        locationFromPlaceArray.photos[0].photo_reference
+      const imageIDFromArray = locationFromPlaceArray.photos[0].photo_reference
 
-      res.send(imageFromLocationArray)
+      const imageQuery = `${url}photo?maxwidth=400&photoreference=${imageIDFromArray}&key=${
+        keys.images
+      }`
+
+      axios
+        .get(imageQuery)
+        .then(response => {
+          res.send(response.data)
+        })
+        .catch(error => {
+          res.send(error)
+        })
     })
     .catch(error => {
       res.send(error)
