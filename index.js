@@ -62,18 +62,7 @@ app.get('/location_data/json', (req, res) => {
       const imageFromLocationArray =
         locationFromPlaceArray.photos[0].photo_reference
 
-      const imageQuery = `${url}photo?maxwidth=400&photoreference=${imageFromLocationArray}&key=${
-        keys.images
-      }`
-
-      axios
-        .get(imageQuery)
-        .then(response => {
-          res.send(CircularJSON.stringify(response))
-        })
-        .catch(error => {
-          res.send(error)
-        })
+      res.send(imageFromLocationArray)
     })
     .catch(error => {
       res.send(error)
