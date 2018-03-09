@@ -26,9 +26,9 @@ app.get('/', (req, res) => {
 })
 
 app.get('/weather/json', (req, res) => {
-  const lat = req.param('lat')
-  const lon = req.param('lon')
-  const units = req.param('units')
+  const lat = req.query.lat
+  const lon = req.query.lon
+  const units = req.query.units
 
   forecast
     .latitude(lat)
@@ -46,8 +46,8 @@ app.get('/weather/json', (req, res) => {
 })
 
 app.get('/location_data/json', (req, res) => {
-  const lat = req.param('lat')
-  const lon = req.param('lon')
+  const lat = req.query.lat
+  const lon = req.query.lon
   const url = 'https://maps.googleapis.com/maps/api/place/'
   const placeDataQuery = `${url}nearbysearch/json?location=${lat},${lon}&radius=1000&key=${
     keys.images
