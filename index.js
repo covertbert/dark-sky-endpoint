@@ -60,7 +60,7 @@ app.get('/location_data/json', (req, res) => {
       const locationFromPlaceArray = placeData[0]
       const imageIDFromArray = locationFromPlaceArray.photos[0].photo_reference
 
-      const imageQuery = `${url}photo?minwidth=1200&photoreference=${imageIDFromArray}&key=${
+      const imageQuery = `${url}photo?maxwidth=2000&photoreference=${imageIDFromArray}&key=${
         keys.images
       }`
 
