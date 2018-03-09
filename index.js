@@ -2,7 +2,6 @@ const express = require('express')
 const RateLimit = require('express-rate-limit')
 const cors = require('cors')
 const axios = require('axios')
-const fs = require('fs')
 
 const DarkSky = require('dark-sky')
 
