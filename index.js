@@ -2,6 +2,7 @@ const express = require('express')
 const RateLimit = require('express-rate-limit')
 const cors = require('cors')
 const axios = require('axios')
+const fs = require('fs')
 
 const DarkSky = require('dark-sky')
 
@@ -60,18 +61,11 @@ app.get('/location_data/json', (req, res) => {
       const locationFromPlaceArray = placeData[0]
       const imageIDFromArray = locationFromPlaceArray.photos[0].photo_reference
 
-      const imageQuery = `${url}photo?maxwidth=400&photoreference=${imageIDFromArray}&key=${
+      const imageQuery = `${url}photo?minwidth=1200&photoreference=${imageIDFromArray}&key=${
         keys.images
       }`
 
-      axios
-        .get(imageQuery)
-        .then(response => {
-          res.send(response.data)
-        })
-        .catch(error => {
-          res.send(error)
-        })
+      res.send(imageQuery)
     })
     .catch(error => {
       res.send(error)
