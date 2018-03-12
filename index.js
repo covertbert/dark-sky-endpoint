@@ -56,6 +56,7 @@ app.get('/location_data/json', (req, res) => {
     .get(placeDataQuery)
     .then(response => {
       const placeData = response.data.results
+      const location = response.data.results[0].vicinity
 
       const locationFromPlaceArray = placeData[0]
       const imageIDFromArray = locationFromPlaceArray.photos[0].photo_reference
@@ -64,7 +65,9 @@ app.get('/location_data/json', (req, res) => {
         keys.images
       }`
 
-      res.send(imageQuery)
+      const responseData = { location, imageQuery }
+
+      res.send(responseData)
     })
     .catch(error => {
       res.send(error)
