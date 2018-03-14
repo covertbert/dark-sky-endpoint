@@ -24,6 +24,8 @@ app.get('/', (req, res) => {
   res.send('There be nothing here')
 })
 
+app.get('/health-check', (req, res) => res.sendStatus(200))
+
 app.get('/weather/json', (req, res) => {
   const lat = req.query.lat
   const lon = req.query.lon
