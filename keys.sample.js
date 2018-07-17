@@ -1,3 +1,4 @@
 module.exports = {
-  darksky: ''
+  darksky: '',
+  images: ''
 }
