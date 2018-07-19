@@ -29,7 +29,7 @@ app.get('/health-check', (req, res) => res.sendStatus(200))
 app.get('/weather/json', (req, res) => {
   const lat = req.query.lat
   const lon = req.query.lon
-  const units = req.query.units
+  const units = 'uk2'
 
   forecast
     .latitude(lat)
