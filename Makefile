@@ -10,7 +10,6 @@ install:
 build:
 	mkdir -p ./dist
 	cp index.js ./dist/index.js
-	echo $DARK_SKY > ./dist/keys.js
 	cp ecosystem.config.js ./dist/ecosystem.config.js
 	cp -r ./node_modules ./dist/node_modules
 
