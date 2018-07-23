@@ -12,7 +12,6 @@ phases:
       - echo Compiling App
       - make build
       - printenv
-      - echo "module.exports = {darksky: '"$DARK_SKY"', images: '"$GOOGLE_IMAGES"'}" > ./dist/keys.js
   post_build:
     commands:
       - echo Build completed on `date`
