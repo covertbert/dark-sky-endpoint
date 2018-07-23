@@ -8,10 +8,10 @@ phases:
       - npm install
   build:
     commands:
+      - printenv
       - echo Build started on `date`
       - echo Compiling App
       - make build
-      - echo "module.exports = {darksky: $DARK_SKY, images: $GOOGLE_IMAGES}" > ./dist/keys.js
   post_build:
     commands:
       - echo Build completed on `date`
