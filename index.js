@@ -3,6 +3,8 @@ const RateLimit = require('express-rate-limit')
 const cors = require('cors')
 const axios = require('axios')
 
+require('dotenv').config()
+
 const DarkSky = require('dark-sky')
 
 const app = express()
@@ -15,6 +17,8 @@ const limiter = new RateLimit({
 
 app.use(limiter)
 app.use(cors())
+
+console.log(process.env.DARK_SKY)
 
 const forecast = new DarkSky(process.env.DARK_SKY)
 
