@@ -11,11 +11,10 @@ phases:
       - echo Build started on `date`
       - echo Compiling App
       - make build
-      - printenv
-  post_build:
-    commands:
       - echo "DARK_SKY="$DARK_SKY > ./dist/.env
       - echo "IMAGES="$GOOGLE_IMAGES >> ./dist/.env
+  post_build:
+    commands:
       - echo Build completed on `date`
 
 artifacts:
