@@ -5,8 +5,6 @@ const axios = require('axios')
 
 const DarkSky = require('dark-sky')
 
-const keys = require('./keys')
-
 const app = express()
 
 const limiter = new RateLimit({
@@ -18,7 +16,7 @@ const limiter = new RateLimit({
 app.use(limiter)
 app.use(cors())
 
-const forecast = new DarkSky(keys.darksky)
+const forecast = new DarkSky(process.env.DARK_SKY)
 
 app.get('/', (req, res) => {
   res.send('There be nothing here')
@@ -51,7 +49,7 @@ app.get('/location_data/json', (req, res) => {
   const lon = req.query.lon
   const url = 'https://maps.googleapis.com/maps/api/place/'
   const placeDataQuery = `${url}nearbysearch/json?location=${lat},${lon}&radius=1000&key=${
-    keys.images
+    process.env.IMAGES
   }`
 
   axios
@@ -64,7 +62,7 @@ app.get('/location_data/json', (req, res) => {
       const imageIDFromArray = locationFromPlaceArray.photos[0].photo_reference
 
       const imageQuery = `${url}photo?maxwidth=2000&photoreference=${imageIDFromArray}&key=${
-        keys.images
+        process.env.IMAGES
       }`
 
       const responseData = { location, imageQuery }
