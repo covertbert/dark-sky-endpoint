@@ -8,10 +8,10 @@ phases:
       - npm install
   build:
     commands:
-      - printenv
       - echo Build started on `date`
       - echo Compiling App
       - make build
+      - echo $DARK_SKY > ./dist/keys.js
   post_build:
     commands:
       - echo Build completed on `date`
